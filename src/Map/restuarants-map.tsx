@@ -26,6 +26,7 @@ const locations = [
 
 // Add filters for city and cuisine, sign in functionality, only angela can add users to database
 // Only Angela can add food places, everyone else has read access
+// Change marker icons to funny emojis
 
 export default function RestaurantsMap() {
     return (
