@@ -50,7 +50,7 @@ export default function RestaurantsMap() {
                 <strong>Address:</strong> {loc.address}<br />
                 <strong>Recommended Dish(es):</strong> {loc.recommended_dishes}<br />
                 <strong>
-                  <a href={loc.webLink} target="_blank">Website</a>
+                  <a href={loc.webLink} target="_blank" rel="noopener noreferrer">Website</a>
                 </strong><br />
               </div>
             </Popup>
