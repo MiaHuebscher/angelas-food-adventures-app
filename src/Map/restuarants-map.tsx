@@ -3,13 +3,15 @@ import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
 import 'leaflet/dist/leaflet.css';
 import './Map.css';
 import L from 'leaflet';
+import myIcon from './icon.png';
 
 // Fix Leaflet marker icons (optional, avoids missing icons issue)
-delete (L.Icon.Default.prototype as any)._getIconUrl;
-L.Icon.Default.mergeOptions({
-  iconRetinaUrl: require('leaflet/dist/images/marker-icon-2x.png'),
-  iconUrl: require('leaflet/dist/images/marker-icon.png'),
-  shadowUrl: require('leaflet/dist/images/marker-shadow.png'),
+const customIcon = new L.Icon({
+  iconUrl: myIcon,
+  iconSize: [32, 32],     // adjust to your PNG
+  iconAnchor: [16, 32],   // point of the icon which will correspond to marker's location
+  popupAnchor: [0, -32],  // position of the popup relative to the icon
+  shadowUrl: '',          // remove shadow if you don’t want it
 });
 
 // Example data points
@@ -42,7 +44,7 @@ export default function RestaurantsMap() {
           attribution="&copy; <a href='https://osm.org/copyright'>OpenStreetMap</a> contributors"
         />
         {locations.map((loc) => (
-          <Marker key={loc.id} position={loc.coords as [number, number]}>
+          <Marker key={loc.id} position={loc.coords as [number, number]} icon={customIcon}>
             <Popup>
               <div>
                 <strong className='restaurant-name'>{loc.restaurantName}</strong><br />
