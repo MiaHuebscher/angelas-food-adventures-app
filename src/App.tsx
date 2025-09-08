@@ -1,11 +1,10 @@
-import React from 'react';
 import './App.css';
-import RestaurantsMap from './Map/restuarants-map';
+import AngelasApp from './Angelas-App';
 
 function App() {
   return (
     <div className="Angelas-Restuarant-App">
-      <RestaurantsMap />
+      <AngelasApp />
     </div>
   );
 }
