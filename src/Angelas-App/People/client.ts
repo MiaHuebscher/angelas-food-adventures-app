@@ -7,9 +7,9 @@ export const findAllUsers = async () => {
   return response.data;
 };
 
-export const findUsersByRole = async (role: string) => {
+export const findUsersByAccess = async (access: string) => {
   const response = await
-    axios.get(`${USERS_API}?role=${role}`);
+    axios.get(`${USERS_API}?access=${access}`);
   return response.data;
 };
 

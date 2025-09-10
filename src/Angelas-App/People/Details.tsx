@@ -11,7 +11,6 @@ export default function PeopleDetails({ fetchUsers }:
   const { uid, cid } = useParams();
   const [user, setUser] = useState<any>({});
   const [name, setName] = useState("");
-  const [email, setEmail] = useState("");
   const [access, setAccess] = useState("");
   const [editing, setEditing] = useState(false);
   const navigate = useNavigate();
@@ -20,7 +19,6 @@ export default function PeopleDetails({ fetchUsers }:
     const user = await client.findUserById(uid);
     setUser(user);
     setName(user.firstName + " " + user.lastName);
-    setEmail(user.email);
     setAccess(user.access);
   };
   const deleteUser = async (uid: string) => {
@@ -30,7 +28,7 @@ export default function PeopleDetails({ fetchUsers }:
   };
   const saveUser = async () => {
     const [firstName, lastName] = name.split(" ");
-    const updatedUser = { ...user, firstName: firstName, lastName: lastName, email: email, access: access };
+    const updatedUser = { ...user, firstName: firstName, lastName: lastName, access: access };
     await client.updateUser(updatedUser);
     setUser(updatedUser);
     setEditing(false);

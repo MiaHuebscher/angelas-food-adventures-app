@@ -12,8 +12,6 @@ export default function Signup() {
   const signup = async () => {
     try {
       user._id = new Date().getTime().toString();
-      user.firstName = "New";
-      user.lastName = "User";
       const currentUser = await client.signup(user);
       dispatch(setCurrentUser(currentUser));
       navigate("Account/Profile");
@@ -25,6 +23,10 @@ export default function Signup() {
     <div>
       <h1>Sign up</h1>
       {error && <div className="alert alert-danger">{error}</div>}
+      <input value={user.firstName} onChange={(e) => setUser({ ...user, firstName: e.target.value })}
+             className="form-control mb-2" placeholder="username" />
+      <input value={user.lastName} onChange={(e) => setUser({ ...user, lastName: e.target.value })}
+             className="form-control mb-2" placeholder="username" />
       <input value={user.username} onChange={(e) => setUser({ ...user, username: e.target.value })}
              className="form-control mb-2" placeholder="username" />
       <input value={user.password} onChange={(e) => setUser({ ...user, password: e.target.value })} type="password"

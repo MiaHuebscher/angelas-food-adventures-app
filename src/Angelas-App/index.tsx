@@ -1,10 +1,11 @@
 import store from "./store";
 import Account from "./Account";
 import ProtectedRoute from "./ProtectedRoute";
+import PeopleMgmtProtectedRoute from "./peopleMgmtProtectedRoute";
 import RestaurantsMap from "./Map/restuarants-map";
-import { Provider, useDispatch, useSelector } from "react-redux";
+import PeopleTable from "./People/Table";
+import { Provider } from "react-redux";
 import { HashRouter, Navigate, Route, Routes } from 'react-router-dom';
-import Signin from "./Account/Signin";
 
 
 export default function AngelasApp() {
@@ -16,9 +17,9 @@ export default function AngelasApp() {
                     <div>
                         <Routes>
                             <Route path="/" element={<Navigate to="/Signin" />} />
-                            <Route path='/Signin' element={<Signin />} />
-                            <Route path="Account/*" element={<ProtectedRoute><h1><Account /></h1></ProtectedRoute>} />
+                            <Route path="Account/*" element={<h1><Account /></h1>} />
                             <Route path="Map" element={<ProtectedRoute><RestaurantsMap /></ProtectedRoute>} />
+                            <Route path='People' element={<PeopleMgmtProtectedRoute><PeopleTable /></PeopleMgmtProtectedRoute>} />
                         </Routes>
                     </div>
                 </div>

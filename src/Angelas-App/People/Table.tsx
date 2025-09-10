@@ -15,10 +15,10 @@ export default function PeopleTable() {
     const users = await client.findAllUsers();
     setUsers(users);
   };
-  const filterUsersByAccess = async (role: string) => {
+  const filterUsersByAccess = async (access: string) => {
     setAccess(access);
     if (access) {
-      const users = await client.findUsersByRole(role);
+      const users = await client.findUsersByAccess(access);
       setUsers(users);
     } else {
       fetchUsers();
@@ -41,7 +41,8 @@ export default function PeopleTable() {
       username: `newuser${Date.now()}`,
       password: "password123",
       access: "READ-ONLY",
-      numRestsAdded: 0
+      numRestsAdded: 0,
+      favCuisines: []
     });
     setUsers([...users, user]);
   };
@@ -54,6 +55,7 @@ export default function PeopleTable() {
       <button onClick={createUser} className="float-end btn btn-danger">
         <FaPlus className="me-2" /> Add User
       </button>}
+      {/* create user should trigger the signup function to appear in a modal*/}
       <input onChange={(e) => filterUsersByName(e.target.value)} placeholder="Search people"
              className="form-control float-start w-25 me-2" />
       <select value={access} onChange={(e) =>filterUsersByAccess(e.target.value)} className="form-select float-start w-25" >
@@ -65,7 +67,7 @@ export default function PeopleTable() {
       <table className="table table-striped">
         <thead>
           <tr>
-            <th>Name</th><th>Login ID</th><th>Access Type</th><th># of Restaurants Added</th>
+            <th>Name</th><th>Login ID</th><th>Access Type</th><th># of Restaurants Added</th><th>Favorite Cuisine(s)</th>
           </tr>
         </thead>
         <tbody>
@@ -79,7 +81,7 @@ export default function PeopleTable() {
                   {user.firstName} {user.lastName}
                 </Link> : <span className="text-danger">{user.firstName} {user.lastName}</span>} 
               </td>
-              <td>{user._id}</td><td>{user.access}</td><td>{user.numRestsAdded}</td>
+              <td>{user._id}</td><td>{user.access}</td><td>{user.numRestsAdded}</td><td>{user.favCuisines}</td>
             </tr>
           ))}
         </tbody>
