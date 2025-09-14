@@ -50,20 +50,19 @@ export default function PeopleTable() {
     fetchUsers();
   }, []);
   return (
-    <div id="wd-people-table">
+    <div id="wd-people-table" className="m-4">
       {(currentUser.firstName === 'Angela' && currentUser.lastName === "Todd") &&
-      <button onClick={createUser} className="float-end btn btn-danger">
+      <button onClick={createUser} className="float-end btn custom-button-design">
         <FaPlus className="me-2" /> Add User
       </button>}
-      {/* create user should trigger the signup function to appear in a modal*/}
       <input onChange={(e) => filterUsersByName(e.target.value)} placeholder="Search people"
              className="form-control float-start w-25 me-2" />
       <select value={access} onChange={(e) =>filterUsersByAccess(e.target.value)} className="form-select float-start w-25" >
         <option value="">All Access Types</option>        
         <option value="READ-ONLY">Read Only</option>
         <option value="READ-WRITE">Read & Write</option>
+        <option value="READ-WRITE-DELETE">Read, Write, & Delete</option>
       </select>
-
       <table className="table table-striped">
         <thead>
           <tr>
@@ -74,12 +73,12 @@ export default function PeopleTable() {
           {users.map((user: any) => (
             <tr key={user._id}>
               <td className="text-nowrap"> 
-                {currentUser.access === "FACULTY" || currentUser.role === "TA" ?
-                <Link to={`/Account/People/${user._id}`} 
-                      className="text-danger text-decoration-none"  >
+                {(currentUser.firstName === 'Angela' && currentUser.lastName === "Todd") ?
+                <Link to={`/People/${user._id}`} 
+                      className="custom-color text-decoration-none"  >
                       <PeopleDetails fetchUsers={fetchUsers} />
                   {user.firstName} {user.lastName}
-                </Link> : <span className="text-danger">{user.firstName} {user.lastName}</span>} 
+                </Link> : <span className="custom-color">{user.firstName} {user.lastName}</span>} 
               </td>
               <td>{user._id}</td><td>{user.access}</td><td>{user.numRestsAdded}</td><td>{user.favCuisines}</td>
             </tr>

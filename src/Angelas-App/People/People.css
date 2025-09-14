@@ -1,8 +1,8 @@
-.Angelas-Restuarant-App {
-  text-align: center;
-}
-
 .custom-button-design {
   background-color: rgb(48, 205, 216);
   color: white
 }
+
+.custom-color {
+    color: rgb(48, 205, 216)
+};

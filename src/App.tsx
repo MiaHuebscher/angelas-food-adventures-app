@@ -3,7 +3,7 @@ import AngelasApp from './Angelas-App';
 
 function App() {
   return (
-    <div className="Angelas-Restuarant-App">
+    <div className='min-vh-100' id="Angelas-Restuarant-App">
       <AngelasApp />
     </div>
   );

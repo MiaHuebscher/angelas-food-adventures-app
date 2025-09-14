@@ -18,7 +18,7 @@ export default function PeopleMgmtProtectedRoute({ children }: { children: any }
   }
 
   if (redirect) {
-    return <Navigate to="/Signin" />;
+    return <Navigate to="/Map" />;
   }
 
   return null;

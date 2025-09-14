@@ -75,7 +75,8 @@ export default function PeopleDetails({ fetchUsers }:
                             id="wd-details-role-dropdown" onKeyDown={(e) => {
                                                             if (e.key === "Enter") { saveUser(); }}}>
                         <option value="READ-ONLY">Read Only</option>
-                        <option value="READ-WRITE">Read & Write</option>     
+                        <option value="READ-WRITE">Read & Write</option>   
+                        <option value="READ-WRITE-DELETE">Read, Write, & Delete</option>       
                     </select>
                 <br /><br />
                 </div>      
@@ -85,7 +86,7 @@ export default function PeopleDetails({ fetchUsers }:
         <b># of Restuarants Added:</b> {user.numRestsAdded} 
         <hr />
         <button onClick={() => deleteUser(uid)} className="btn btn-danger float-end" > Delete </button>
-        <Link to={`/Kanbas/Courses/${cid}/People`} className="btn btn-secondary float-start float-end me-2" > Cancel </Link>
+        <Link to={`/People`} className="btn btn-secondary float-start float-end me-2" > Cancel </Link>
     </div> 
   ); 
 }

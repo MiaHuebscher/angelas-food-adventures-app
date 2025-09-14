@@ -11,7 +11,7 @@ export default function Account() {
       <div className="d-flex">
         <div className="flex-fill p-4 pt-0">
           <Routes>
-            <Route path="/" element={ <Navigate to={ currentUser ? "Account/Profile" : "Account/Signin" } /> } />
+            <Route path="/" element={ <Navigate to={ currentUser ? "/Account/Profile" : "/Account/Signin" } /> } />
             <Route path="/Signin" element={<Signin />} />
             <Route path="/Signup" element={<h1><Signup /></h1>} />
             <Route path="/Profile" element={<h1><Profile /></h1>} />

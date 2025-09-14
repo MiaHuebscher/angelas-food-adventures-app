@@ -25,18 +25,19 @@ const locations = [
     source: 'Palomar', angelasRating: 'Needs More Data', coords: [32.847653,-117.272592]},
 ];
 
-// Add filters for city and cuisine, sign in functionality, only angela can add users to database
-// Only Angela can add food places, everyone else has read access
+// create modal to add restaurant to map
+// Add filters to map
+// create links for people to let angela delete/update them
 
 export default function RestaurantsMap() {
     return (
-      <div id='angelas-webpage' className='container mt-4'>
-        <h2 className='text-center mb-3'>Angela's Food Aventures Map</h2>
-        <MapContainer id='angelas-map'
-          center={[39.8283, -98.5795]} // center on USA
-          zoom={4}
-          style={{ height: '800px', width: '100%', borderRadius: '12px' }}
-        >
+      <div id='angelas-webpage' className='container-fluid m-4 mt-0'>
+        <h2 className='text-center mb-2'>Angela's Food Aventures Map</h2>
+        
+        <MapContainer id='angelas-map' className='w-100'
+          center={[45.6280, -122.6739]}
+          zoom={6}
+          style={{ height: '65vh', borderRadius: '12px' }}>
           <TileLayer
             url='https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png'
             attribution="&copy; <a href='https://osm.org/copyright'>OpenStreetMap</a> contributors"

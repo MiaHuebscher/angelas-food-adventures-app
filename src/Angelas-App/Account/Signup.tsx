@@ -34,6 +34,7 @@ export default function Signup() {
       <select value={user.access} onChange={(e) =>setUser({ ...user, access: e.target.value})} className="form-select mb-2" >
         <option value="READ-ONLY">Read Only</option>        
         <option value="READ-WRITE">Read & Write</option>
+        <option value='READ-WRITE-DELETE'>Read, Write, & Delete</option>
       </select>
       <button onClick={signup} className="btn btn-primary mb-2"> Sign up </button><br />
     </div>
