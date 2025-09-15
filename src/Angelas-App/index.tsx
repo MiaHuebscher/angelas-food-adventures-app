@@ -7,6 +7,7 @@ import PeopleTable from "./People/Table";
 import { Provider } from "react-redux";
 import { HashRouter, Navigate, Route, Routes } from 'react-router-dom';
 import Navigation from "./Navigation";
+import Data from "./Data/Data";
 
 
 export default function AngelasApp() {
@@ -32,7 +33,7 @@ export default function AngelasApp() {
                             <Route path='Data' element={
                                 <ProtectedRoute>
                                     <PeopleMgmtProtectedRoute>
-                                        <PeopleTable />
+                                        <Data />
                                     </PeopleMgmtProtectedRoute>
                                 </ProtectedRoute>} />
                         </Routes>

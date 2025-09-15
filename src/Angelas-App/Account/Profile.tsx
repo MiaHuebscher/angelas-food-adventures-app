@@ -35,7 +35,6 @@ export default function Profile() {
     const updatedUser = { ...profile, firstName: firstName, lastName: lastName, access: access, username: username, 
       password: password };
     const resp = await peopleClient.updateUser(updatedUser);
-    console.log(resp);
     setProfile(updatedUser);
     navigate("/Account/Profile");
     setStatus(true);
