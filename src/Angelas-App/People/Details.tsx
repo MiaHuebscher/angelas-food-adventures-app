@@ -8,15 +8,15 @@ import * as client from "./client";
 
 export default function PeopleDetails({ fetchUsers }:
     { fetchUsers: () => void; }) {
-  const { uid, cid } = useParams();
+  const { pid } = useParams();
   const [user, setUser] = useState<any>({});
   const [name, setName] = useState("");
   const [access, setAccess] = useState("");
   const [editing, setEditing] = useState(false);
   const navigate = useNavigate();
   const fetchUser = async () => {
-    if (!uid) return;
-    const user = await client.findUserById(uid);
+    if (!pid) return;
+    const user = await client.findUserById(pid);
     setUser(user);
     setName(user.firstName + " " + user.lastName);
     setAccess(user.access);
@@ -24,7 +24,7 @@ export default function PeopleDetails({ fetchUsers }:
   const deleteUser = async (uid: string) => {
     await client.deleteUser(uid);
     fetchUsers();
-    navigate(`/Accounts/People`);
+    navigate(`/People`);
   };
   const saveUser = async () => {
     const [firstName, lastName] = name.split(" ");
@@ -33,18 +33,18 @@ export default function PeopleDetails({ fetchUsers }:
     setUser(updatedUser);
     setEditing(false);
     fetchUsers();
-    navigate(`/Accounts/People`);
+    navigate(`/People`);
   };
   useEffect(() => {
-    if (uid) fetchUser();
-  }, [uid]);
-  if (!uid) return null;
+    if (pid) fetchUser();
+  }, [pid]);
+  if (!pid) return null;
   return (
     <div className="position-fixed top-0 end-0 bottom-0 bg-white p-4 shadow w-25 text-black">
-        <Link to={`/Account/People`} className="btn position-fixed end-0 top-0">
+        <Link to={`/People`} className="btn position-fixed end-0 top-0">
             <IoCloseSharp className="fs-1" /> </Link>
         <div className="text-center mt-2"> <FaUserCircle className="text-secondary me-2 fs-1" /> </div><hr />
-        <div className="text-danger fs-4"> 
+        <div className="custom-color fs-4"> 
             {!editing && (
                 <FaPencil onClick={() => setEditing(true)}
                           className="float-end fs-5 mt-2 text-primary" /> )}
@@ -67,7 +67,7 @@ export default function PeopleDetails({ fetchUsers }:
             <b className="float-start">Access Type:</b> 
             {!editing && (
                 <div className="float-start ms-2" onClick={() => setEditing(true)}>
-                    {user.role}
+                    {user.access}
                 </div>)}
             {user && editing && (
                 <div>
@@ -83,9 +83,10 @@ export default function PeopleDetails({ fetchUsers }:
             )}
         </div><br />
         <b>Login ID:</b> {user._id} <br />
-        <b># of Restuarants Added:</b> {user.numRestsAdded} 
+        <b># of Restuarants Added:</b> {user.numRestsAdded}<br />
+        <b>Favorite Cuisine(s):</b> {user.favCuisines}
         <hr />
-        <button onClick={() => deleteUser(uid)} className="btn btn-danger float-end" > Delete </button>
+        <button onClick={() => deleteUser(pid)} className="btn btn-danger float-end" > Delete </button>
         <Link to={`/People`} className="btn btn-secondary float-start float-end me-2" > Cancel </Link>
     </div> 
   ); 
