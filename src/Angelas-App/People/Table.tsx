@@ -66,7 +66,7 @@ export default function PeopleTable() {
       <table className="table table-striped">
         <thead>
           <tr>
-            <th>Name</th><th>Login ID</th><th>Access Type</th><th># of Restaurants Added</th><th>Favorite Cuisine(s)</th>
+            <th>Name</th><th>Username</th><th>Login ID</th><th>Access Type</th><th># of Restaurants Added</th><th>Favorite Cuisine(s)</th>
           </tr>
         </thead>
         <tbody>
@@ -80,7 +80,7 @@ export default function PeopleTable() {
                   {user.firstName} {user.lastName}
                 </Link> : <span className="custom-color">{user.firstName} {user.lastName}</span>} 
               </td>
-              <td>{user._id}</td><td>{user.access}</td><td>{user.numRestsAdded}</td><td>{user.favCuisines}</td>
+              <td>{user.username}</td><td>{user._id}</td><td>{user.access}</td><td>{user.numRestsAdded}</td><td>{user.favCuisines}</td>
             </tr>
           ))}
         </tbody>

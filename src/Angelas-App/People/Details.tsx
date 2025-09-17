@@ -11,7 +11,9 @@ export default function PeopleDetails({ fetchUsers }:
   const { pid } = useParams();
   const [user, setUser] = useState<any>({});
   const [name, setName] = useState("");
+  const [username, setUsername] = useState("");  
   const [access, setAccess] = useState("");
+  const [favCuisines, setFavCuisines] = useState("");
   const [editing, setEditing] = useState(false);
   const navigate = useNavigate();
   const fetchUser = async () => {
@@ -28,7 +30,8 @@ export default function PeopleDetails({ fetchUsers }:
   };
   const saveUser = async () => {
     const [firstName, lastName] = name.split(" ");
-    const updatedUser = { ...user, firstName: firstName, lastName: lastName, access: access };
+    const updatedUser = { ...user, username: username, firstName: firstName, lastName: lastName, 
+        access: access, favCuisines: favCuisines};
     await client.updateUser(updatedUser);
     setUser(updatedUser);
     setEditing(false);
@@ -63,28 +66,93 @@ export default function PeopleDetails({ fetchUsers }:
                 />
             )}
         </div><br />
-        <div className="d-inline">
-            <b className="float-start">Access Type:</b> 
-            {!editing && (
-                <div className="float-start ms-2" onClick={() => setEditing(true)}>
+        <div className="d-flex flex-column">
+            {/* Username */}
+            <div className="mb-2">
+                <b>Username:</b>
+                {!editing && (
+                <div
+                    className="ms-2 d-inline-block"
+                    onClick={() => setEditing(true)}
+                    style={{ cursor: "pointer"}}>
+                    {user.username}
+                </div>)}
+                {user && editing && (
+                <input defaultValue={user.username}
+                    onChange={(e) => setUsername(e.target.value)}
+                    className="form-control form-control-sm ms-2 mt-1 fs-7 d-inline-block"
+                    style={{ width: "55%" }}
+                    id="details-username-input"
+                    onKeyDown={(e) => {
+                    if (e.key === "Enter") {
+                        saveUser();
+                    }
+                    }} />
+                )}
+            </div>
+
+            {/* Access Type */}
+            <div className="mb-2">
+                <b>Access Type:</b>
+                {!editing && (
+                <div
+                    className="ms-2 d-inline-block"
+                    onClick={() => setEditing(true)}
+                    style={{ cursor: "pointer"}}>
                     {user.access}
                 </div>)}
-            {user && editing && (
-                <div>
-                    <select defaultValue={user.role} onChange={(e) =>setAccess(e.target.value)} className="form-select w-50 float-start ms-2" 
-                            id="wd-details-role-dropdown" onKeyDown={(e) => {
-                                                            if (e.key === "Enter") { saveUser(); }}}>
-                        <option value="READ-ONLY">Read Only</option>
-                        <option value="READ-WRITE">Read & Write</option>   
-                        <option value="READ-WRITE-DELETE">Read, Write, & Delete</option>       
-                    </select>
-                <br /><br />
-                </div>      
-            )}
-        </div><br />
-        <b>Login ID:</b> {user._id} <br />
-        <b># of Restuarants Added:</b> {user.numRestsAdded}<br />
-        <b>Favorite Cuisine(s):</b> {user.favCuisines}
+                {user && editing && (
+                <select
+                    defaultValue={user.role}
+                    onChange={(e) => setAccess(e.target.value)}
+                    className="form-select form-select-sm ms-2 mt-1 fs-7 d-inline-block"
+                    style={{ width: "55%" }}
+                    id="details-role-dropdown"
+                    onKeyDown={(e) => {
+                    if (e.key === "Enter") {
+                        saveUser();
+                    }
+                    }}>
+                    <option value="READ-ONLY">Read Only</option>
+                    <option value="READ-WRITE">Read & Write</option>
+                    <option value="READ-WRITE-DELETE">Read, Write, & Delete</option>
+                </select>
+                )}
+            </div>
+            {/* Login ID */}
+            <div className="mb-2">
+                <b>Login ID:</b> {user._id}
+            </div>
+
+            {/* Number of Restaurants */}
+            <div className="mb-2">
+                <b># of Restaurants Added:</b> {user.numRestsAdded}
+            </div>
+
+            {/* Favorite Cuisines */}
+            <div className="mb-2">
+                <b>Favorite Cuisine(s):</b>
+                {!editing && (
+                <div
+                    className="ms-2 d-inline-block"
+                    onClick={() => setEditing(true)}
+                    style={{ cursor: "pointer"}}>
+                    {user.favCuisines}
+                </div>)}
+                {user && editing && (
+                <input defaultValue={user.favCuisines}
+                    onChange={(e) => setFavCuisines(e.target.value)}
+                    className="form-control form-control-sm ms-2 mt-1 fs-7 d-inline-block"
+                    style={{ width: "55%" }}
+                    id="details-username-input"
+                    onKeyDown={(e) => {
+                    if (e.key === "Enter") {
+                        saveUser();
+                    }
+                    }} />
+                )}
+            </div>
+        </div>
         <hr />
         <button onClick={() => deleteUser(pid)} className="btn btn-danger float-end" > Delete </button>
         <Link to={`/People`} className="btn btn-secondary float-start float-end me-2" > Cancel </Link>
