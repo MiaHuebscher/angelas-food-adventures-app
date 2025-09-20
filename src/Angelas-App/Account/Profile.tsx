@@ -86,7 +86,8 @@ export default function Profile() {
           <div className="form-group row">
             <label className="col-sm-2 col-form-label fs-5 mb-2" htmlFor="access">Access Type</label>
             <div className="col-sm-10">
-              <select id="access" className="form-control mb-2" onChange={(e) => setAccess(e.target.value)} defaultValue={profile.access}>
+              <select id="access" className="form-control mb-2" onChange={(e) => setAccess(e.target.value)} defaultValue={profile.access} 
+                      disabled={(currentUser.firstName === "Angela" && currentUser.lastName === "Todd") ? false : true}>
                 <option selected={currentUser ? currentUser.access === "READ-ONLY" : profile.access === "READ-ONLY"} value="READ-ONLY">Read Only</option>        
                 <option selected={currentUser ? currentUser.access === "READ-WRITE" : profile.access === "READ-WRITE"} value="READ-WRITE">Read & Write</option>
                 <option selected={currentUser ? currentUser.access === "READ-WRITE-DELETE" : profile.access === "READ-WRITE-DELETE"} 
