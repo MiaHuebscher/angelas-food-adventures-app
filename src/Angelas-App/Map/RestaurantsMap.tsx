@@ -127,7 +127,7 @@ export default function RestaurantsMap() {
                       </div>
                     </div>
                     <div className="d-flex justify-content-end gap-2 mt-2">
-                      <button className="btn btn-sm btn-secondary" onClick={() => {setEditing(false), setEditingRestaurant("")}}>Cancel</button>
+                      <button className="btn btn-sm btn-secondary" onClick={() => {setEditing(false); setEditingRestaurant("")}}>Cancel</button>
                       <button className="btn btn-sm btn-success" onClick={() => {setEditing(false); setEditingRestaurant("")}}>Save</button>
                     </div>
                   </div>)

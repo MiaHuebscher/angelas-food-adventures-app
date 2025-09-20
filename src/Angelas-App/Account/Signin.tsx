@@ -27,7 +27,8 @@ export default function Signin() {
         <input onChange={(e) => setCredentials({ ...credentials, username: e.target.value })}
           value={credentials.username} className="form-control mb-2" placeholder="username" />
         <input onChange={(e) => setCredentials({ ...credentials, password: e.target.value }) }
-          value={credentials.password} className="form-control mb-2" placeholder="password" type="password" />
+          value={credentials.password} className="form-control mb-2" placeholder="password" type="password" 
+          onKeyDown={(e) => { if (e.key === "Enter") { signin(); }}}/>
         <button onClick={signin} className="btn custom-button-design w-100"> Sign in </button>
         <br />
       </div>
