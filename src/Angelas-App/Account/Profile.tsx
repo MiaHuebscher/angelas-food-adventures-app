@@ -42,13 +42,13 @@ export default function Profile() {
   };
   const signout = async () => {
     await accountClient.signout();
-    dispatch(setCurrentUser(null));
     navigate("/Account/Signin");
+    dispatch(setCurrentUser(null));
   };
   useEffect(() => { fetchProfile(); }, []);
   return (
     <div className="container-fluid">
-      <h1>Profile</h1>
+      <h1>Profile</h1><hr />
       {status && 
       <div className="alert alert-success" role="alert">
         Successfully Updated Account Information!

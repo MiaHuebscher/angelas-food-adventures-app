@@ -51,18 +51,20 @@ export default function PeopleTable() {
   }, []);
   return (
     <div id="wd-people-table" className="m-4">
-      {(currentUser.firstName === 'Angela' && currentUser.lastName === "Todd") &&
-      <button onClick={createUser} className="float-end btn custom-button-design">
-        <FaPlus className="me-2" /> Add User
-      </button>}
-      <input onChange={(e) => filterUsersByName(e.target.value)} placeholder="Search people"
-             className="form-control float-start w-25 me-2" />
-      <select value={access} onChange={(e) =>filterUsersByAccess(e.target.value)} className="form-select float-start w-25" >
-        <option value="">All Access Types</option>        
-        <option value="READ-ONLY">Read Only</option>
-        <option value="READ-WRITE">Read & Write</option>
-        <option value="READ-WRITE-DELETE">Read, Write, & Delete</option>
-      </select>
+      <h1>People Management</h1><hr />
+      <div className="mb-3 clearfix">
+        <button onClick={createUser} className="float-end btn custom-button-design">
+          <FaPlus className="me-2" /> Add User
+        </button>
+        <input onChange={(e) => filterUsersByName(e.target.value)} placeholder="Search people"
+              className="form-control float-start w-25 me-2" />
+        <select value={access} onChange={(e) =>filterUsersByAccess(e.target.value)} className="form-select float-start w-25" >
+          <option value="">All Access Types</option>        
+          <option value="READ-ONLY">Read Only</option>
+          <option value="READ-WRITE">Read & Write</option>
+          <option value="READ-WRITE-DELETE">Read, Write, & Delete</option>
+        </select>
+      </div>
       <table className="table table-striped">
         <thead>
           <tr>

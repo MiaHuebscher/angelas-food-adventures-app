@@ -1,3 +1,13 @@
 .restaurant-name {
     font-size: 2vw
 }
+
+.leaflet-popup-content {
+  width: auto !important; /* Let it grow naturally */
+  min-width: 350px; /* Give enough space for label + input */
+  max-width: 500px; /* Don't let it get too wide */
+}
+
+.popup-form input {
+  min-width: 0; /* ensures flexbox can shrink input if needed */
+}
