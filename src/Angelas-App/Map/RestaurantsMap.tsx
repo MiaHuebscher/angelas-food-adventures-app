@@ -1,6 +1,6 @@
 import L from 'leaflet';
 import myIcon from './icon.png';
-import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
+import { MapContainer, TileLayer, Marker, Popup, useMap } from 'react-leaflet';
 import { useSelector } from "react-redux";
 import { useEffect, useState, useMemo } from "react";
 import { FaPlus } from "react-icons/fa6";
@@ -136,7 +136,17 @@ export default function RestaurantsMap() {
         setRestaurants(prev => prev.filter(r => r._id !== rid));
       }
     };
-    
+
+    function ForceResize() {
+      const map = useMap();
+      useEffect(() => {
+        setTimeout(() => {
+          map.invalidateSize();
+        }, 200);
+      }, [map]);
+      return null;
+    };
+
     // Load data from server when page loads
     useEffect(() => {
       fetchRestaurants();
@@ -146,7 +156,7 @@ export default function RestaurantsMap() {
       <div id='angelas-webpage' className='container-fluid mt-0'>
         <div className="d-flex justify-content-between align-items-center mb-2">
           <h2 className="text-center flex-grow-1 mb-0">
-            Angela's Food Adventures Map test
+            Angela's Food Adventures Map
           </h2>
           {!(currentUser.access === "READ-ONLY") &&
           <span>
@@ -263,6 +273,7 @@ export default function RestaurantsMap() {
           zoom={10}
           minZoom={5}
           style={{ height: '72vh', borderRadius: '7px' }}>
+          <ForceResize />
           <TileLayer
               url={`https://api.maptiler.com/maps/streets/{z}/{x}/{y}.png?key=KA8DXtaZOGzGWg60NAIo`}
               attribution='&copy; <a href="https://www.maptiler.com/">MapTiler</a> &copy; OpenStreetMap contributors'
