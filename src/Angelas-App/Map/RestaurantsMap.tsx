@@ -156,7 +156,7 @@ export default function RestaurantsMap() {
     }, []);
 
     return (
-      <div id='angelas-webpage' className='container-fluid mt-0'>
+      <div id='angelas-webpage' className='mt-0'>
         <div className="d-flex justify-content-between align-items-center mb-2">
           <h2 className="text-center flex-grow-1 mb-0">
             Angela's Food Adventures Map
@@ -273,9 +273,10 @@ export default function RestaurantsMap() {
         </div>
         <MapContainer id='angelas-map' className='w-100'
           center={[45.6280, -122.6739]}
+          
           zoom={10}
           minZoom={5}
-          style={{ width: '95%', height: '72vh', borderRadius: '7px' }}
+          style={{ width: '100%', height: '72vh', borderRadius: '7px', border: '2px solid red'}}
           whenReady={() => {setMapReady(true); 
             setTimeout(() => {
               if (mapRef.current) {
