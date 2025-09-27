@@ -287,8 +287,15 @@ export default function RestaurantsMap() {
           <TileLayer
             url={`https://api.maptiler.com/maps/streets/{z}/{x}/{y}.png?key=KA8DXtaZOGzGWg60NAIo`}
             attribution='&copy; <a href="https://www.maptiler.com/">MapTiler</a> &copy; OpenStreetMap contributors'
-            crossOrigin="anonymous"
-            referrerPolicy="no-referrer-when-downgrade"
+            eventHandlers={{
+              tileload: (e) => {
+                console.log('Tile loaded:', e.tile.src);
+                console.log('Tile element:', e.tile);
+              },
+              tileerror: (e) => {
+                console.log('Tile error:', e);
+              }
+            }}
           />
           {mapReady && filteredRestaurants.map((loc) => (
             <Marker key={loc._id} position={loc.coords as [number, number]} icon={customIcon}>

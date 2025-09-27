@@ -16,7 +16,15 @@
   height: 72vh;
   width: 100%;
 }
+
 .leaflet-tile {
   max-width: none !important;
   max-height: none !important;
+  image-rendering: -webkit-optimize-contrast !important;
+  image-rendering: crisp-edges !important;
+  display: block !important;
+}
+
+.leaflet-tile-loaded {
+  opacity: 1 !important;
 }
