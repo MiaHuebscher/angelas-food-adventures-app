@@ -129,7 +129,7 @@ export default function PeopleDetails({ fetchUsers }:
 
             {/* Number of Restaurants */}
             <div className="mb-2">
-                <b># of Restaurants Added:</b> {user.numRestsAdded}
+                <b># of Restaurants Added:</b> {user?.numRestsAdded ?? 0}
             </div>
 
             {/* Favorite Cuisines */}

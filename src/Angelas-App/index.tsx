@@ -12,7 +12,7 @@ import Data from "./Data/Data";
 import 'leaflet/dist/leaflet.css';
 
 export default function AngelasApp() {
-    const [showNav, setShowNav] = useState(false);
+    const [showNav, setShowNav] = useState(true);
     return (
     <Provider store={store}>
         <HashRouter>
