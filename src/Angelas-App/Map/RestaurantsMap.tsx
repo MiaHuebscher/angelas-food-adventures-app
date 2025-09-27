@@ -276,15 +276,8 @@ export default function RestaurantsMap() {
           
           zoom={10}
           minZoom={5}
-          style={{ width: '100%', height: '72vh', borderRadius: '7px', border: '2px solid red'}}
-          whenReady={() => {setMapReady(true); 
-            setTimeout(() => {
-              if (mapRef.current) {
-                mapRef.current.invalidateSize();
-                console.log('Map size:', mapRef.current.getSize());
-                console.log('Map bounds:', mapRef.current.getBounds());
-              }
-            }, 100); }}
+          style={{ width: '95%', height: '72vh', borderRadius: '7px'}}
+          whenReady={() => {setMapReady(true); }}
           ref={mapRef}
           maxBounds={[
             [-90, -180], 
@@ -300,12 +293,6 @@ export default function RestaurantsMap() {
             keepBuffer={2}  // Keep more tiles in memory
             updateWhenIdle={false}  // Update while panning
             updateWhenZooming={false}  // Keep loading during zoom
-            eventHandlers={{
-              tileload: (e) => {
-                console.log('Tile loaded:', e.tile.src);
-                console.log('Tile element:', e.tile);
-              }
-            }}
           />
           {mapReady && filteredRestaurants.map((loc) => (
             <Marker key={loc._id} position={loc.coords as [number, number]} icon={customIcon}>
