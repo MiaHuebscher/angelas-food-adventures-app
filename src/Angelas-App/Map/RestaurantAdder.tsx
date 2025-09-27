@@ -42,12 +42,22 @@ export default function RestaurantAdder({ setRestName, setCuisine, setAngelasRat
             setWebLink("");
             setSource("");
             setNote("");
+            setLat(0);
+            setLong(0);
 
+            setAddRestName("");
             setAddCuisine("");
+            setAddAddress("");
+            setAddCity("");
             setAddState("");
+            setAddLat(0);
+            setAddLong(0);
             setAddSource("");
+            setAddRecommendedDishes("");
+            setNote("");
             setAddAngelasRating("");
             setAddCountry("");
+            setAddWebLink("");
         };
 
         // Get data from server
@@ -81,7 +91,7 @@ export default function RestaurantAdder({ setRestName, setCuisine, setAngelasRat
                 {/* Restaurant Name */}
                 <div className="d-flex align-items-center mb-2 mt-2">
                     <b className='me-2'>Restaurant Name:</b>
-                    <input placeholder="Restaurant Name" defaultValue={addRestName} 
+                    <input placeholder="Restaurant Name" value={addRestName} 
                             onChange={(e) => {setRestName(e.target.value); setAddRestName(e.target.value); }}
                             className="form-control form-control-sm flex-grow-1"
                             id="food-type-input" />
@@ -99,7 +109,7 @@ export default function RestaurantAdder({ setRestName, setCuisine, setAngelasRat
                 {/* Address */}
                 <div className="d-flex align-items-center mb-2">
                     <b className="me-2">Address:</b>
-                    <input placeholder="Address" defaultValue={addAddress} 
+                    <input placeholder="Address" value={addAddress} 
                             onChange={(e) => {setAddress(e.target.value); setAddAddress(e.target.value); }}
                             className="form-control form-control-sm flex-grow-1"
                             id="address-input" />
@@ -107,7 +117,7 @@ export default function RestaurantAdder({ setRestName, setCuisine, setAngelasRat
                 {/* City */}
                 <div className="d-flex align-items-center mb-2">
                     <b className="me-2">City:</b>
-                    <input placeholder="City" defaultValue={addCity}
+                    <input placeholder="City" value={addCity}
                             onChange={(e) => {setCity(e.target.value); setAddCity(e.target.value); }}
                             className="form-control form-control-sm flex-grow-1"
                             id="city-input" />
@@ -137,14 +147,14 @@ export default function RestaurantAdder({ setRestName, setCuisine, setAngelasRat
                 <div className="d-flex align-items-center mb-2">
                 <b className="me-2">Latitude:</b>
                 <input placeholder="0" type="number" onChange={(e) => {setLat(e.target.valueAsNumber); setAddLat(e.target.valueAsNumber);}}
-                        className="form-control form-control-sm flex-grow-1" defaultValue={addLat}
+                        className="form-control form-control-sm flex-grow-1" value={addLat}
                         id="lat-input" />
                 </div>
                 {/* Longitude */}
                 <div className="d-flex align-items-center mb-2">
                 <b className="me-2">Longitude:</b>
                 <input placeholder="0" type="number" onChange={(e) => {setLong(e.target.valueAsNumber); setAddLong(e.target.valueAsNumber); }}
-                        className="form-control form-control-sm flex-grow-1" defaultValue={addLong}
+                        className="form-control form-control-sm flex-grow-1" value={addLong}
                         id="long-input" />
                 </div>
                 {/* Source */}
@@ -160,7 +170,7 @@ export default function RestaurantAdder({ setRestName, setCuisine, setAngelasRat
                 {/* Recommended Dishes */}
                 <div className="d-flex align-items-center mb-2">
                 <b className="me-2">*Recommended Dishes:</b>
-                <input placeholder="Recommended Dishes" defaultValue={addRecommendedDishes}
+                <input placeholder="Recommended Dishes" value={addRecommendedDishes}
                        onChange={(e) => {setRecommendedDishes(e.target.value); setAddRecommendedDishes(e.target.value); }}
                        className="form-control form-control-sm flex-grow-1"
                        id="rec-dishes-input" />
@@ -168,7 +178,7 @@ export default function RestaurantAdder({ setRestName, setCuisine, setAngelasRat
                 {/* Note */}
                 <div className="d-flex align-items-center mb-2">
                 <b className="me-2">*Note:</b>
-                <input placeholder="Note" defaultValue={addNote}
+                <input placeholder="Note" value={addNote}
                         onChange={(e) => {setNote(e.target.value); setAddNote(e.target.value); }}
                         className="form-control form-control-sm flex-grow-1"
                         id="note-input" />
@@ -188,7 +198,7 @@ export default function RestaurantAdder({ setRestName, setCuisine, setAngelasRat
                 <div className="d-flex align-items-center mb-2">
                 <b className="me-2">*Website:</b>
                 <input placeholder="Website" onChange={(e) => {setWebLink(e.target.value); setAddWebLink(e.target.value); }}
-                        className="form-control form-control-sm flex-grow-1"
+                        className="form-control form-control-sm flex-grow-1" value={addWebLink}
                         id="web-link-input" />
                 </div>
               </div>
