@@ -263,7 +263,6 @@ export default function RestaurantsMap() {
           center={[45.6280, -122.6739]}
           
           zoom={10}
-          minZoom={5}
           style={{ width: '95%', height: '71vh', borderRadius: '7px'}}
           whenReady={() => {setMapReady(true); }}
           ref={mapRef}
