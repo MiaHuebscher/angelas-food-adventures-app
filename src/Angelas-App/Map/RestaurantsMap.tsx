@@ -275,9 +275,9 @@ export default function RestaurantsMap() {
           style={{ height: '72vh', borderRadius: '7px' }}>
           <ForceResize />
           <TileLayer
-              url={`https://api.maptiler.com/maps/streets/{z}/{x}/{y}.png?key=KA8DXtaZOGzGWg60NAIo`}
-              attribution='&copy; <a href="https://www.maptiler.com/">MapTiler</a> &copy; OpenStreetMap contributors'
-            />
+              url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+              attribution="&copy; OpenStreetMap contributors"
+          />
           {filteredRestaurants.map((loc) => (
             <Marker key={loc._id} position={loc.coords as [number, number]} icon={customIcon}>
               <Popup key={loc._id}
