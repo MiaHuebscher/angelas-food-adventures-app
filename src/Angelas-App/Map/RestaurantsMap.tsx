@@ -42,6 +42,7 @@ export default function RestaurantsMap() {
     const [countries, setCountries] = useState<string[]>([]);
     const [cuisines, setCuisines] = useState<string[]>([]);
     const [sources, setSources] = useState<string[]>([]);
+    const [mapReady, setMapReady] = useState(false);
     
     // Get data from server
     const getData = async () => {
@@ -272,13 +273,14 @@ export default function RestaurantsMap() {
           center={[45.6280, -122.6739]}
           zoom={10}
           minZoom={5}
-          style={{ height: '72vh', borderRadius: '7px' }}>
+          style={{ height: '71vh', borderRadius: '7px' }}
+          whenReady={() => setMapReady(true)}>
           <ForceResize />
           <TileLayer
               url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
               attribution="&copy; OpenStreetMap contributors"
           />
-          {filteredRestaurants.map((loc) => (
+          {mapReady && filteredRestaurants.map((loc) => (
             <Marker key={loc._id} position={loc.coords as [number, number]} icon={customIcon}>
               <Popup key={loc._id}
                      maxWidth={500} eventHandlers={{popupclose: () => {setEditing(false); setEditingRestaurant("");}}}>
