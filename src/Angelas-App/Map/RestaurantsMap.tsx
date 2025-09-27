@@ -43,7 +43,7 @@ export default function RestaurantsMap() {
     const [cuisines, setCuisines] = useState<string[]>([]);
     const [sources, setSources] = useState<string[]>([]);
     const [mapReady, setMapReady] = useState(false);
-    const mapRef = useRef<LeafletMap>(null);
+    const mapRef = useRef<L.Map | null>(null);
 
     // Get data from server
     const getData = async () => {
@@ -154,6 +154,7 @@ export default function RestaurantsMap() {
       fetchRestaurants();
       getData();
     }, []);
+
     return (
       <div id='angelas-webpage' className='container-fluid mt-0'>
         <div className="d-flex justify-content-between align-items-center mb-2">
@@ -275,12 +276,19 @@ export default function RestaurantsMap() {
           zoom={10}
           minZoom={5}
           style={{ height: '72vh', borderRadius: '7px' }}
-          whenReady={() => setMapReady(true)}
-          ref={mapRef}>            
+          whenReady={() => {setMapReady(true); mapRef.current?.invalidateSize()}}
+          ref={mapRef}
+          maxBounds={[
+            [-90, -180], 
+            [90, 180], 
+          ]}
+          maxBoundsViscosity={0.5}>            
           <ForceResize />
           <TileLayer
-              url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-              attribution="&copy; OpenStreetMap contributors"
+            url={`https://api.maptiler.com/maps/streets/{z}/{x}/{y}.png?key=KA8DXtaZOGzGWg60NAIo`}
+            attribution='&copy; <a href="https://www.maptiler.com/">MapTiler</a> &copy; OpenStreetMap contributors'
+            crossOrigin=""
+            referrerPolicy="strict-origin"
           />
           {mapReady && filteredRestaurants.map((loc) => (
             <Marker key={loc._id} position={loc.coords as [number, number]} icon={customIcon}>
