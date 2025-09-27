@@ -1,8 +1,8 @@
-import L from 'leaflet';
+import L, { Map as LeafletMap } from "leaflet";
 import myIcon from './icon.png';
 import { MapContainer, TileLayer, Marker, Popup, useMap } from 'react-leaflet';
 import { useSelector } from "react-redux";
-import { useEffect, useState, useMemo } from "react";
+import { useEffect, useState, useMemo, useRef } from "react";
 import { FaPlus } from "react-icons/fa6";
 import * as client from './client';
 import * as userClient from './../People/client';
@@ -43,7 +43,8 @@ export default function RestaurantsMap() {
     const [cuisines, setCuisines] = useState<string[]>([]);
     const [sources, setSources] = useState<string[]>([]);
     const [mapReady, setMapReady] = useState(false);
-    
+    const mapRef = useRef<LeafletMap>(null);
+
     // Get data from server
     const getData = async () => {
       const serverData = await dataClient.getData();
@@ -273,8 +274,9 @@ export default function RestaurantsMap() {
           center={[45.6280, -122.6739]}
           zoom={10}
           minZoom={5}
-          style={{ height: '71vh', borderRadius: '7px' }}
-          whenReady={() => setMapReady(true)}>
+          style={{ height: '72vh', borderRadius: '7px' }}
+          whenReady={() => setMapReady(true)}
+          ref={mapRef}>            
           <ForceResize />
           <TileLayer
               url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
