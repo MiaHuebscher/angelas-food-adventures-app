@@ -105,7 +105,7 @@ export default function PeopleDetails({ fetchUsers }:
                 </div>)}
                 {user && editing && (
                 <select
-                    defaultValue={user.role}
+                    defaultValue={user.access}
                     onChange={(e) => setAccess(e.target.value)}
                     className="form-select form-select-sm ms-2 mt-1 fs-7 d-inline-block"
                     style={{ width: "55%" }}

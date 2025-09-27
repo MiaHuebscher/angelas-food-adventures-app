@@ -100,7 +100,6 @@ export default function RestaurantsMap() {
     const { currentUser } = useSelector((state: any) => state.accountReducer);
     const fetchRestaurants = async () => {
         const restaurants = await client.findAllRestaurants();
-        console.log(restaurants);
         setRestaurants(restaurants);
       };
     const addRestaurant = async (newRest: any) => {
