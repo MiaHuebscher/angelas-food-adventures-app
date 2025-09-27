@@ -9,6 +9,7 @@ import { HashRouter, Navigate, Route, Routes } from 'react-router-dom';
 import { useState } from "react";
 import Navigation from "./Navigation";
 import Data from "./Data/Data";
+import 'leaflet/dist/leaflet.css';
 
 export default function AngelasApp() {
     const [showNav, setShowNav] = useState(false);

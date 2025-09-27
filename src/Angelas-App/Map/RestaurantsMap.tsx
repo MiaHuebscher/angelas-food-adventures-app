@@ -1,4 +1,5 @@
-import L, { Map as LeafletMap } from "leaflet";
+import L from "leaflet";
+import 'leaflet/dist/leaflet.css';
 import myIcon from './icon.png';
 import { MapContainer, TileLayer, Marker, Popup, useMap } from 'react-leaflet';
 import { useSelector } from "react-redux";
@@ -6,7 +7,6 @@ import { useEffect, useState, useMemo, useRef } from "react";
 import { FaPlus } from "react-icons/fa6";
 import * as client from './client';
 import * as userClient from './../People/client';
-import 'leaflet/dist/leaflet.css';
 import './Map.css';
 import RestaurantAdder from './RestaurantAdder';
 import * as dataClient from './../Data/client';
