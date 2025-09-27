@@ -142,15 +142,6 @@ export default function RestaurantsMap() {
       fetchRestaurants();
       getData();
     }, []);
-    useEffect(() => {
-      console.time("fetch-restaurants");
-      client.findAllRestaurants()
-        .then(rests => {
-          console.timeEnd("fetch-restaurants");
-          console.log("Fetched restaurants:", rests.length);
-          setRestaurants(rests);
-        });
-    }, []);
     return (
       <div id='angelas-webpage' className='container-fluid mt-0'>
         <div className="d-flex justify-content-between align-items-center mb-2">
@@ -277,7 +268,7 @@ export default function RestaurantsMap() {
           />
           {filteredRestaurants.map((loc) => (
             <Marker key={loc._id} position={loc.coords as [number, number]} icon={customIcon}>
-              <Popup key={`${loc._id}-${editingRest}-${editing}`}
+              <Popup key={loc._id}
                      maxWidth={500} eventHandlers={{popupclose: () => {setEditing(false); setEditingRestaurant("");}}}>
                 {editing && (loc._id === editingRest) ?
                   (<div className='popup-form'>
