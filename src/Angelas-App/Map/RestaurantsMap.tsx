@@ -271,29 +271,38 @@ export default function RestaurantsMap() {
             </button>
           </div>
         </div>
-        <MapContainer id='angelas-map' className='w-95'
+        <MapContainer id='angelas-map' className='w-100'
           center={[45.6280, -122.6739]}
           zoom={10}
           minZoom={5}
-          style={{ height: '72vh', borderRadius: '7px' }}
-          whenReady={() => {setMapReady(true); mapRef.current?.invalidateSize()}}
+          style={{ width: '95%', height: '72vh', borderRadius: '7px' }}
+          whenReady={() => {setMapReady(true); 
+            setTimeout(() => {
+              if (mapRef.current) {
+                mapRef.current.invalidateSize();
+                console.log('Map size:', mapRef.current.getSize());
+                console.log('Map bounds:', mapRef.current.getBounds());
+              }
+            }, 100); }}
           ref={mapRef}
           maxBounds={[
             [-90, -180], 
             [90, 180], 
           ]}
           maxBoundsViscosity={0.5}>            
-          <ForceResize />
+          
           <TileLayer
             url={`https://api.maptiler.com/maps/streets/{z}/{x}/{y}.png?key=KA8DXtaZOGzGWg60NAIo`}
             attribution='&copy; <a href="https://www.maptiler.com/">MapTiler</a> &copy; OpenStreetMap contributors'
+            tileSize={256}  // Explicitly set tile size
+            zoomOffset={0}  // Ensure no zoom offset
+            keepBuffer={2}  // Keep more tiles in memory
+            updateWhenIdle={false}  // Update while panning
+            updateWhenZooming={false}  // Keep loading during zoom
             eventHandlers={{
               tileload: (e) => {
                 console.log('Tile loaded:', e.tile.src);
                 console.log('Tile element:', e.tile);
-              },
-              tileerror: (e) => {
-                console.log('Tile error:', e);
               }
             }}
           />
