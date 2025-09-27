@@ -76,7 +76,7 @@ export default function RestaurantAdder({ setRestName, setCuisine, setAngelasRat
               </div>
               <div className="modal-body">
                 <span>*Optional</span>
-                <a href="https://www.latlong.net/convert-address-to-lat-long.html" target="_blank" 
+                <a href="https://www.gps-coordinates.net/" target="_blank" 
                    rel="noopener noreferrer" className='float-end'>Coordinate Search</a>
                 {/* Restaurant Name */}
                 <div className="d-flex align-items-center mb-2 mt-2">
