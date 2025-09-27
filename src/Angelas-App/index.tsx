@@ -15,18 +15,19 @@ export default function AngelasApp() {
     return (
     <Provider store={store}>
         <HashRouter>
-            <div className="min-vh-100" id='angelas-app'>
-                <div className="d-flex min-vh-100">
-                    <div className={`bg-black ${showNav ? 'd-block' : 'd-none d-md-block'}`} 
-                    style={{ width: "10%", minHeight: '100vh', position: 'fixed', top:0, left: 0, zIndex: 1000 }}>
-                        <Navigation />
-                    </div>
-                    <div className="flex-fill p-4" style={{ marginLeft: '10%'}}>
-                        <button
-                            className="btn btn-outline-secondary d-md-none mb-2"
-                            onClick={() => setShowNav(!showNav)}>
-                            ☰ Menu
-                        </button>
+            <div className="d-flex" style={{ height: '100vh', overflow: 'hidden' }}>
+                <div className={`bg-black ${showNav ? 'd-block' : 'd-none d-md-block'}`} 
+                style={{ width: "10%", minHeight: '100vh', position: 'fixed', top:0, left: 0, zIndex: 1000 }}>
+                    <Navigation />
+                </div>
+                <div className="flex-fill" style={{ marginLeft: '10%', display: 'flex', flexDirection: 'column',
+                                                    height: '100vh', overflow: 'hidden',}}>
+                    <button
+                        className="btn btn-outline-secondary d-md-none mb-2"
+                        onClick={() => setShowNav(!showNav)}>
+                        ☰ Menu
+                    </button>
+                    <div style={{ flex: 1, overflow: 'hidden' }}>
                         <Routes>
                             <Route path="/" element={<Navigate to="/Account/Signin" />} />
                             <Route path="Account/*" element={<Account />} />
