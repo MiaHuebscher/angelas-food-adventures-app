@@ -142,6 +142,15 @@ export default function RestaurantsMap() {
       fetchRestaurants();
       getData();
     }, []);
+    useEffect(() => {
+      console.time("fetch-restaurants");
+      client.findAllRestaurants()
+        .then(rests => {
+          console.timeEnd("fetch-restaurants");
+          console.log("Fetched restaurants:", rests.length);
+          setRestaurants(rests);
+        });
+    }, []);
     return (
       <div id='angelas-webpage' className='container-fluid mt-0'>
         <div className="d-flex justify-content-between align-items-center mb-2">
