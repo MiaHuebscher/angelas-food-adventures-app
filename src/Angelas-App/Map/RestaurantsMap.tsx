@@ -14,7 +14,7 @@ import * as dataClient from './../Data/client';
 // Create custom marker icons for map
 const customIcon = new L.Icon({
   iconUrl: myIcon,
-  iconSize: [64, 64],
+  iconSize: [48, 48],
   iconAnchor: [16, 32],
   popupAnchor: [0, -32],
   shadowUrl: '',
@@ -263,9 +263,11 @@ export default function RestaurantsMap() {
           zoom={6}
           style={{ height: '72vh', borderRadius: '7px' }}>
           <TileLayer
-            url='https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png'
-            attribution="&copy; <a href='https://osm.org/copyright'>OpenStreetMap</a> contributors"
-          />
+              url={`https://api.maptiler.com/maps/streets/{z}/{x}/{y}.png?key=KA8DXtaZOGzGWg60NAIo`}
+              attribution='&copy; <a href="https://www.maptiler.com/">MapTiler</a> &copy; OpenStreetMap contributors'
+              crossOrigin=""
+              referrerPolicy="strict-origin"
+            />
           {filteredRestaurants.map((loc) => (
             <Marker key={loc._id} position={loc.coords as [number, number]} icon={customIcon}>
               <Popup key={loc._id}
