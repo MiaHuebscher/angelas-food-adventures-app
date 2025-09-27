@@ -146,7 +146,7 @@ export default function RestaurantsMap() {
       <div id='angelas-webpage' className='container-fluid mt-0'>
         <div className="d-flex justify-content-between align-items-center mb-2">
           <h2 className="text-center flex-grow-1 mb-0">
-            Angela's Food Adventures Map
+            Angela's Food Adventures Map test
           </h2>
           {!(currentUser.access === "READ-ONLY") &&
           <span>
@@ -260,7 +260,8 @@ export default function RestaurantsMap() {
         </div>
         <MapContainer id='angelas-map' className='w-95'
           center={[45.6280, -122.6739]}
-          zoom={6}
+          zoom={10}
+          minZoom={5}
           style={{ height: '72vh', borderRadius: '7px' }}>
           <TileLayer
               url={`https://api.maptiler.com/maps/streets/{z}/{x}/{y}.png?key=KA8DXtaZOGzGWg60NAIo`}
