@@ -141,14 +141,14 @@ export default function Data() {
             <h3 className="ms-4">Angelas Ratings:</h3>
             <div id='angelas-ratings-options'>
                 <li key='add-rating-input' className="list-group-item d-flex align-items-center ms-4 mt-3">
-                    <input className="form-control me-2" defaultValue="Enter New Rating Category" style={{ width: "46%" }}
+                    <input className="form-control me-2" placeholder="Enter New Rating Category" style={{ width: "46%" }}
                            onChange={(e) => setAddRating(e.target.value)}/>
                     <button className="btn btn-success" onClick={() => handleRatings(addRating, "add")}>Add</button>
                 </li>
                 {angelasRatings.map((rating: string) => 
                     fixRatings === rating ? 
                         (<li key={rating} className="list-group-item d-flex align-items-center ms-4 mt-2">
-                            <input className="form-control form-control-sm me-2" defaultValue={rating} style={{ width: "40%" }}
+                            <input className="form-control form-control-sm me-2" placeholder={rating} style={{ width: "40%" }}
                                    onChange={(e) => setNewRating(e.target.value)}/>
                             <button className="btn btn-warning me-2"
                                     onClick={() => handleRatings(rating, "update", newRating ? newRating : rating)}>Update</button>
@@ -186,14 +186,14 @@ export default function Data() {
             <h3 className="ms-4 mt-4">Countries:</h3>
             <div id='countries-options'>
                 <li key='add-country-input' className="list-group-item d-flex align-items-center ms-4 mt-3">
-                    <input className="form-control me-2" defaultValue="Enter New Country" style={{ width: "46%" }}
+                    <input className="form-control me-2" placeholder="Enter New Country" style={{ width: "46%" }}
                            onChange={(e) => setAddCountry(e.target.value)}/>
                     <button className="btn btn-success" onClick={() => handleCountries(addCountry, "add")}>Add</button>
                 </li>
                 {countries.map((country: string) => 
                     fixCountries === country ? 
                         (<li key={country} className="list-group-item d-flex align-items-center ms-4 mt-2">
-                            <input className="form-control form-control-sm me-2" defaultValue={country} style={{ width: "40%" }}
+                            <input className="form-control form-control-sm me-2" placeholder={country} style={{ width: "40%" }}
                                    onChange={(e) => setNewCountry(e.target.value)}/>
                             <button className="btn btn-warning me-2"
                                     onClick={() => handleCountries(country, "update", newCountry ? newCountry : country)}>Update</button>
@@ -218,14 +218,14 @@ export default function Data() {
             <h3 className="ms-4 mt-4">Cuisines:</h3>
             <div id='cuisines-options'>
                 <li key='add-cuisine-input' className="list-group-item d-flex align-items-center ms-4 mt-3">
-                    <input className="form-control me-2" defaultValue="Enter New Cuisine" style={{ width: "46%" }}
+                    <input className="form-control me-2" placeholder="Enter New Cuisine" style={{ width: "46%" }}
                            onChange={(e) => setAddCuisine(e.target.value)}/>
                     <button className="btn btn-success" onClick={() => handleCuisines(addCuisine, "add")}>Add</button>
                 </li>
                 {cuisines.map((cuisine: string) => 
                     fixCuisines === cuisine ? 
                         (<li key={cuisine} className="list-group-item d-flex align-items-center ms-4 mt-2">
-                            <input className="form-control form-control-sm me-2" defaultValue={cuisine} style={{ width: "40%" }}
+                            <input className="form-control form-control-sm me-2" placeholder={cuisine} style={{ width: "40%" }}
                                    onChange={(e) => setNewCuisine(e.target.value)}/>
                             <button className="btn btn-warning me-2"
                                     onClick={() => handleCuisines(cuisine, "update", newCuisines ? newCuisines : cuisine)}>Update</button>
@@ -250,14 +250,14 @@ export default function Data() {
             <h3 className="ms-4 mt-4">Sources:</h3>
             <div id='sources-options'>
                 <li key='add-source-input' className="list-group-item d-flex align-items-center ms-4 mt-3">
-                    <input className="form-control me-2" defaultValue="Enter New Source" style={{ width: "46%" }}
+                    <input className="form-control me-2" placeholder="Enter New Source" style={{ width: "46%" }}
                            onChange={(e) => setAddSource(e.target.value)}/>
                     <button className="btn btn-success" onClick={() => handleSources(addSource, "add")}>Add</button>
                 </li>
                 {sources.map((source: string) => 
                     fixSources === source ? 
                         (<li key={source} className="list-group-item d-flex align-items-center ms-4 mt-2">
-                            <input className="form-control form-control-sm me-2" defaultValue={source} style={{ width: "40%" }}
+                            <input className="form-control form-control-sm me-2" placeholder={source} style={{ width: "40%" }}
                                    onChange={(e) => setNewSource(e.target.value)}/>
                             <button className="btn btn-warning me-2"
                                     onClick={() => handleSources(source, "update", newSource ? newSource : source)}>Update</button>

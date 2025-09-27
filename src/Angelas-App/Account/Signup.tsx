@@ -35,6 +35,7 @@ export default function Signup() {
         <option value="READ-ONLY">Read Only</option>        
         <option value="READ-WRITE">Read & Write</option>
         <option value='READ-WRITE-DELETE'>Read, Write, & Delete</option>
+        <option value='FULL-POWER'>Full Power</option>
       </select>
       <button onClick={signup} className="btn btn-primary mb-2"> Sign up </button><br />
     </div>

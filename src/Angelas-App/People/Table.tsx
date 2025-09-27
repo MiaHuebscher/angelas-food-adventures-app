@@ -6,7 +6,6 @@ import PeopleDetails from "./Details";
 import { useSelector } from "react-redux";
 
 export default function PeopleTable() {
-  const { cid } = useParams();
   const [users, setUsers] = useState<any[]>([]);
   const { currentUser } = useSelector((state: any) => state.accountReducer);
   const [access, setAccess] = useState("");
@@ -63,6 +62,7 @@ export default function PeopleTable() {
           <option value="READ-ONLY">Read Only</option>
           <option value="READ-WRITE">Read & Write</option>
           <option value="READ-WRITE-DELETE">Read, Write, & Delete</option>
+          <option value="FULL-POWER">Full Power</option>
         </select>
       </div>
       <table className="table table-striped">
@@ -75,7 +75,7 @@ export default function PeopleTable() {
           {users.map((user: any) => (
             <tr key={user._id}>
               <td className="text-nowrap"> 
-                {(currentUser.firstName === 'Angela' && currentUser.lastName === "Todd") ?
+                {(currentUser.access === "FULL-POWER") ?
                 <Link to={`/People/${user._id}`} 
                       className="custom-color text-decoration-none"  >
                       <PeopleDetails fetchUsers={fetchUsers} />

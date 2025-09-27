@@ -20,8 +20,10 @@ export default function PeopleDetails({ fetchUsers }:
     if (!pid) return;
     const user = await client.findUserById(pid);
     setUser(user);
+    setUsername(user.username);
     setName(user.firstName + " " + user.lastName);
     setAccess(user.access);
+    setFavCuisines(user.favCuisines);
   };
   const deleteUser = async (uid: string) => {
     await client.deleteUser(uid);
@@ -116,6 +118,7 @@ export default function PeopleDetails({ fetchUsers }:
                     <option value="READ-ONLY">Read Only</option>
                     <option value="READ-WRITE">Read & Write</option>
                     <option value="READ-WRITE-DELETE">Read, Write, & Delete</option>
+                    <option value="FULL-POWER">Full Power</option>
                 </select>
                 )}
             </div>

@@ -147,7 +147,7 @@ export default function RestaurantFilters({
                 className="form-control w-100 w-md-auto"
                 placeholder="Search Restaurant"
                 value={searchText}
-                onChange={(e) => setSearchText(e.target.value)}
+                onChange={(e) => setCityTextFilter(e.target.value)}
                 />
 
                 {/* State */}

@@ -33,7 +33,7 @@ export default function Profile() {
   };
   const saveUser = async () => {
     const updatedUser = { ...profile, firstName: firstName, lastName: lastName, access: access, username: username, 
-      password: password };
+      password: password, favCuisines: favCuisines };
     const resp = await peopleClient.updateUser(updatedUser);
     setProfile(updatedUser);
     navigate("/Account/Profile");
@@ -42,8 +42,8 @@ export default function Profile() {
   };
   const signout = async () => {
     await accountClient.signout();
-    navigate("/Account/Signin");
     dispatch(setCurrentUser(null));
+    navigate("/Account/Signin");
   };
   useEffect(() => { fetchProfile(); }, []);
   return (
@@ -87,11 +87,12 @@ export default function Profile() {
             <label className="col-sm-2 col-form-label fs-5 mb-2" htmlFor="access">Access Type</label>
             <div className="col-sm-10">
               <select id="access" className="form-control mb-2" onChange={(e) => setAccess(e.target.value)} defaultValue={profile.access} 
-                      disabled={(currentUser.firstName === "Angela" && currentUser.lastName === "Todd") ? false : true}>
+                      disabled={!(currentUser?.firstName === "Angela" && currentUser?.lastName === "Todd")}>
                 <option selected={currentUser ? currentUser.access === "READ-ONLY" : profile.access === "READ-ONLY"} value="READ-ONLY">Read Only</option>        
                 <option selected={currentUser ? currentUser.access === "READ-WRITE" : profile.access === "READ-WRITE"} value="READ-WRITE">Read & Write</option>
                 <option selected={currentUser ? currentUser.access === "READ-WRITE-DELETE" : profile.access === "READ-WRITE-DELETE"} 
                         value="READ-WRITE-DELETE">Read, Write, & Delete</option>
+                <option selected={currentUser ? currentUser.access === "FULL-POWER" : profile.access === "FULL-POWER"} value="FULL-POWER">Full Power</option>
               </select>
             </div>
           </div>

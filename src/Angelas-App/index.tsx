@@ -1,7 +1,7 @@
 import store from "./store";
 import Account from "./Account";
 import ProtectedRoute from "./ProtectedRoute";
-import PeopleMgmtProtectedRoute from "./extraProtectedRoute";
+import ExtraProtectedRoute from "./extraProtectedRoute";
 import RestaurantsMap from "./Map/RestaurantsMap";
 import PeopleTable from "./People/Table";
 import { Provider } from "react-redux";
@@ -13,14 +13,15 @@ import Data from "./Data/Data";
 export default function AngelasApp() {
     const [showNav, setShowNav] = useState(false);
     return (
-    <HashRouter>
-        <div className="min-vh-100" id='angelas-app'>
-            <Provider store={store}>
+    <Provider store={store}>
+        <HashRouter>
+            <div className="min-vh-100" id='angelas-app'>
                 <div className="d-flex min-vh-100">
-                    <div className={`bg-black ${showNav ? 'd-block' : 'd-none d-md-block w-20'}`} style={{ width: "10%" }}>
+                    <div className={`bg-black ${showNav ? 'd-block' : 'd-none d-md-block'}`} 
+                    style={{ width: "10%", minHeight: '100vh', position: 'fixed', top:0, left: 0, zIndex: 1000 }}>
                         <Navigation />
                     </div>
-                    <div className="flex-fill p-4">
+                    <div className="flex-fill p-4" style={{ marginLeft: '10%'}}>
                         <button
                             className="btn btn-outline-secondary d-md-none mb-2"
                             onClick={() => setShowNav(!showNav)}>
@@ -28,31 +29,31 @@ export default function AngelasApp() {
                         </button>
                         <Routes>
                             <Route path="/" element={<Navigate to="/Account/Signin" />} />
-                            <Route path="Account/*" element={<h1><Account /></h1>} />
+                            <Route path="Account/*" element={<Account />} />
                             <Route path="Map" element={<ProtectedRoute><RestaurantsMap /></ProtectedRoute>} />
                             <Route path='People' element={
                                 <ProtectedRoute>
-                                    <PeopleMgmtProtectedRoute>
+                                    <ExtraProtectedRoute>
                                         <PeopleTable />
-                                    </PeopleMgmtProtectedRoute>
+                                    </ExtraProtectedRoute>
                                 </ProtectedRoute>} />
                             <Route path='People/:pid' element={
                                 <ProtectedRoute>
-                                    <PeopleMgmtProtectedRoute>
+                                    <ExtraProtectedRoute>
                                         <PeopleTable />
-                                    </PeopleMgmtProtectedRoute>
+                                    </ExtraProtectedRoute>
                                 </ProtectedRoute>} />
                             <Route path='Data' element={
                                 <ProtectedRoute>
-                                    <PeopleMgmtProtectedRoute>
+                                    <ExtraProtectedRoute>
                                         <Data />
-                                    </PeopleMgmtProtectedRoute>
+                                    </ExtraProtectedRoute>
                                 </ProtectedRoute>} />
                         </Routes>
                     </div>
                 </div>
-            </Provider>
-        </div>
-    </HashRouter>
+            </div>
+        </HashRouter>
+    </Provider>
     )
 }
