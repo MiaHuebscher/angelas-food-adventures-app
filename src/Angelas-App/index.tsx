@@ -18,10 +18,18 @@ export default function AngelasApp() {
         <HashRouter>
             <div className="min-vh-100" id='angelas-app'>
                 <div className="d-flex min-vh-100">
-                    <div className={`bg-black ${showNav ? 'd-block' : 'd-none d-md-block w-20'}`} style={{ width: "10%" }}>
+                    <div className={`bg-black ${showNav ? 'd-block' : 'd-none d-md-block'}`}
+                    style={{ 
+                        width: "10%",
+                        position: "fixed",
+                        top: 0,
+                        left: 0,
+                        height: "100vh",
+                        overflowY: "auto",
+                        zIndex: 1000}}>
                         <Navigation />
                     </div>
-                    <div className="flex-fill p-4">
+                    <div className="flex-fill p-4" style={{ marginLeft: showNav ? "10%" : "0" }}>
                         <button
                             className="btn btn-outline-secondary d-md-none mb-2"
                             onClick={() => setShowNav(!showNav)}>

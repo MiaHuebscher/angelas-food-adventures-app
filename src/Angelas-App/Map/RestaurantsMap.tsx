@@ -100,12 +100,13 @@ export default function RestaurantsMap() {
     const { currentUser } = useSelector((state: any) => state.accountReducer);
     const fetchRestaurants = async () => {
         const restaurants = await client.findAllRestaurants();
+        console.log(restaurants);
         setRestaurants(restaurants);
       };
     const addRestaurant = async (newRest: any) => {
         try {
-          const newRestResponse = await client.createRestaurant(newRest);
-          const updateUserResponse = await userClient.updateUser({ ...currentUser, numRestsAdded: currentUser.numRestsAdded + 1})
+          await client.createRestaurant(newRest);
+          await userClient.updateUser({ ...currentUser, numRestsAdded: currentUser.numRestsAdded + 1})
 
           setRestaurants([...restaurants, newRest]); setCuisine("");
 
@@ -139,16 +140,6 @@ export default function RestaurantsMap() {
       }
     };
 
-    function ForceResize() {
-      const map = useMap();
-      useEffect(() => {
-        setTimeout(() => {
-          map.invalidateSize();
-        }, 200);
-      }, [map]);
-      return null;
-    };
-
     // Load data from server when page loads
     useEffect(() => {
       fetchRestaurants();
@@ -156,8 +147,9 @@ export default function RestaurantsMap() {
     }, []);
 
     return (
-      <div id='angelas-webpage' className='mt-0'>
+      <div id='angelas-webpage' className='mt-0 ms-4 me-4'>
         <div className="d-flex justify-content-between align-items-center mb-2">
+          <h2>{restaurants.length}</h2>
           <h2 className="text-center flex-grow-1 mb-0">
             Angela's Food Adventures Map
           </h2>
@@ -177,106 +169,103 @@ export default function RestaurantsMap() {
           </span>}
         </div>
         <hr />
-        <div className="d-flex flex-column gap-3 mb-3">
-          <div className="d-flex flex-wrap align-items-center gap-3">
-            {/* Search by Name */}
-            <input
-              type="text"
-              className="form-control w-auto"
-              placeholder="Search Restaurant"
-              value={searchText}
-              onChange={(e) => setSearchText(e.target.value)}
-            />
-            {/* Search by City */}
-            <input
-              type="text"
-              className="form-control w-auto"
-              placeholder="Search City"
-              value={cityTextFilter}
-              onChange={(e) => setCityTextFilter(e.target.value)}
-            />
-            {/* Search by State */}
-            <select
-              className="form-select w-auto"
-              value={stateFilter}
-              onChange={(e) => setStateFilter(e.target.value)}
-            >
-              <option value="">All States</option>
-              {uniqueStates.map((state) => (
-                <option key={state} value={state}>{state}</option>
-              ))}
-            </select>
-            {/* Search by Country */}
-            <select
-              className="form-select w-auto"
-              value={countryFilter}
-              onChange={(e) => setCountryFilter(e.target.value)}
-            >
-              <option value="">All Countries</option>
-              {uniqueCountries.map((country) => (
-                <option key={country} value={country}>{country}</option>
-              ))}
-            </select>
-          </div>
-          <div className="d-flex flex-wrap align-items-center gap-3">
-            {/* Cuisine Dropdown */}
-            <select
-              className="form-select w-auto"
-              value={cuisineFilter}
-              onChange={(e) => setCuisineFilter(e.target.value)}
-            >
-              <option value="">All Cuisines</option>
-              {uniqueCuisines.map((cuisine) => (
-                <option key={cuisine} value={cuisine}>{cuisine}</option>
-              ))}
-            </select>
-            {/* Rating Dropdown */}
-            <select
-              className="form-select w-auto"
-              value={ratingFilter}
-              onChange={(e) => setRatingFilter(e.target.value)}
-            >
-              <option value="">All Ratings</option>
-              {uniqueRatings.map((rating) => (
-                <option key={rating} value={rating}>
-                  {rating}
-                </option>
-              ))}
-            </select>
-            {/* Search by Source */}
-            <select
-              className="form-select w-auto"
-              value={sourceFilter}
-              onChange={(e) => setSourceFilter(e.target.value)}
-            >
-              <option value="">All Sources</option>
-              {uniqueSources.map((source) => (
-                <option key={source} value={source}>{source}</option>
-              ))}
-            </select>
-            {/* Clear Filters Button */}
-            <button
-              className="btn btn-outline-secondary"
-              onClick={() => {
-                setCuisineFilter("");
-                setRatingFilter("");
-                setSearchText("");
-                setCityTextFilter("");
-                setStateFilter("");
-                setCountryFilter("");
-                setSourceFilter("");
-              }}
-            >
-              Clear Filters
-            </button>
-          </div>
+        <div className="d-flex flex-wrap align-items-center gap-3 mb-2">
+          {/* Search by Name */}
+          <input
+            type="text"
+            className="form-control w-auto mb-0"
+            placeholder="Search Restaurant"
+            value={searchText}
+            onChange={(e) => setSearchText(e.target.value)}
+          />
+          {/* Search by City */}
+          <input
+            type="text"
+            className="form-control w-auto mb-0"
+            placeholder="Search City"
+            value={cityTextFilter}
+            onChange={(e) => setCityTextFilter(e.target.value)}
+          />
+          {/* Search by State */}
+          <select
+            className="form-select w-auto mb-0"
+            value={stateFilter}
+            onChange={(e) => setStateFilter(e.target.value)}
+          >
+            <option value="">All States</option>
+            {uniqueStates.map((state) => (
+              <option key={state} value={state}>{state}</option>
+            ))}
+          </select>
+          {/* Search by Country */}
+          <select
+            className="form-select w-auto mb-0"
+            value={countryFilter}
+            onChange={(e) => setCountryFilter(e.target.value)}
+          >
+            <option value="">All Countries</option>
+            {uniqueCountries.map((country) => (
+              <option key={country} value={country}>{country}</option>
+            ))}
+          </select>
+    
+          {/* Cuisine Dropdown */}
+          <select
+            className="form-select w-auto mb-0"
+            value={cuisineFilter}
+            onChange={(e) => setCuisineFilter(e.target.value)}
+          >
+            <option value="">All Cuisines</option>
+            {uniqueCuisines.map((cuisine) => (
+              <option key={cuisine} value={cuisine}>{cuisine}</option>
+            ))}
+          </select>
+          {/* Rating Dropdown */}
+          <select
+            className="form-select w-auto mb-0"
+            value={ratingFilter}
+            onChange={(e) => setRatingFilter(e.target.value)}
+          >
+            <option value="">All Ratings</option>
+            {uniqueRatings.map((rating) => (
+              <option key={rating} value={rating}>
+                {rating}
+              </option>
+            ))}
+          </select>
+          {/* Search by Source */}
+          <select
+            className="form-select w-auto mb-0"
+            value={sourceFilter}
+            onChange={(e) => setSourceFilter(e.target.value)}
+          >
+            <option value="">All Sources</option>
+            {uniqueSources.map((source) => (
+              <option key={source} value={source}>{source}</option>
+            ))}
+          </select>
+          {/* Clear Filters Button */}
+          <button
+            className="btn btn-outline-secondary mb-0"
+            onClick={() => {
+              setCuisineFilter("");
+              setRatingFilter("");
+              setSearchText("");
+              setCityTextFilter("");
+              setStateFilter("");
+              setCountryFilter("");
+              setSourceFilter("");
+            }}
+          >
+            Clear Filters
+          </button>
         </div>
         <MapContainer id='angelas-map' className='w-100'
           center={[45.6280, -122.6739]}
           
           zoom={10}
           minZoom={5}
-          style={{ width: '95%', height: '72vh', borderRadius: '7px'}}
+          style={{ width: '95%', height: '71vh', borderRadius: '7px'}}
           whenReady={() => {setMapReady(true); }}
           ref={mapRef}
           maxBounds={[
